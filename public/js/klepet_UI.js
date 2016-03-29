@@ -88,20 +88,7 @@ $(document).ready(function() {
       }
     }
     
-    $('#seznam-uporabnikov').on('click', '> *', function(event) {
-      var id = $(this).index();
-      event.stopPropagation();
-      var uporabniki = $('#seznam-uporabnikov').children();
-      for(var i = 0; i < uporabniki.length; i++) {
-        if(id == i) {
-          console.log(uporabniki[i].innerHTML)
-          $('#poslji-sporocilo').val('/zasebno \"' + uporabniki[i].innerHTML + '\"');
-          break;
-        }
-      }
-      console.log(uporabniki.length);
-      $('#poslji-sporocilo').focus();
-    });
+
 
     $('#seznam-kanalov div').click(function() {
       console.log('opa');
@@ -117,6 +104,11 @@ $(document).ready(function() {
     for (var i=0; i < uporabniki.length; i++) {
       $('#seznam-uporabnikov').append(divElementEnostavniTekst(uporabniki[i]));
     }
+    
+     $('#seznam-uporabnikov div').click(function() {
+      $('#poslji-sporocilo').val('/zasebno "' + $(this).text() + '" ');
+      $('#poslji-sporocilo').focus();
+    });
   });
 
   setInterval(function() {
