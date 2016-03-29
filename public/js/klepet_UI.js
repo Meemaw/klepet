@@ -87,11 +87,29 @@ $(document).ready(function() {
         $('#seznam-kanalov').append(divElementEnostavniTekst(kanal));
       }
     }
+    
+    $('#seznam-uporabnikov').on('click', '> *', function(event) {
+      var id = $(this).index();
+      event.stopPropagation();
+      var uporabniki = $('#seznam-uporabnikov').children();
+      for(var i = 0; i < uporabniki.length; i++) {
+        if(id == i) {
+          console.log(uporabniki[i].innerHTML)
+          $('#poslji-sporocilo').val('/zasebno \"' + uporabniki[i].innerHTML + '\"');
+          break;
+        }
+      }
+      console.log(uporabniki.length);
+      $('#poslji-sporocilo').focus();
+    });
 
     $('#seznam-kanalov div').click(function() {
+      console.log('opa');
       klepetApp.procesirajUkaz('/pridruzitev ' + $(this).text());
       $('#poslji-sporocilo').focus();
     });
+    
+    
   });
 
   socket.on('uporabniki', function(uporabniki) {
