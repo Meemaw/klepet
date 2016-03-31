@@ -40,6 +40,11 @@ $.get('/swearWords.txt', function(podatki) {
   vulgarneBesede = podatki.split('\r\n');
 });
 
+
+function checkYoutubeLinks(sporocilo) {
+  
+}
+
 function filtirirajVulgarneBesede(vhod) {
   for (var i in vulgarneBesede) {
     vhod = vhod.replace(new RegExp('\\b' + vulgarneBesede[i] + '\\b', 'gi'), function() {
