@@ -47,7 +47,7 @@ function getYoutubeElement(videoId) {
   iframe.style.width = 200+"px";
   iframe.style.height = 150+"px";
   iframe.style.marginLeft = 20+"px";
-  return iframe;
+  return $('<div></div>').html(iframe);
 }
 
 function checkYoutubeLinks(sporocilo) {
