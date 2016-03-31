@@ -27,6 +27,7 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
     $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+    checkYoutubeLinks(sporocilo);
   }
 
   $('#poslji-sporocilo').val('');
@@ -40,8 +41,24 @@ $.get('/swearWords.txt', function(podatki) {
   vulgarneBesede = podatki.split('\r\n');
 });
 
+function getYoutubeElement(videoId) {
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId;
+  iframe.style.width = 200+"px";
+  iframe.style.height = 150+"px";
+  iframe.style.marginLeft = 20+"px";
+  return iframe;
+}
 
 function checkYoutubeLinks(sporocilo) {
+  var split = sporocilo.match(/\S+/g);
+  for(var i = 0; i < split.length; i++) {
+    if(split[i].startsWith("https://www.youtube.com/watch?v=")) {
+      var videoId = split[i].substring(32,split[i].length);
+      var iframe = getYoutubeElement(videoId);
+      $('#sporocila').append(iframe);
+    }
+  }
   
 }
 
