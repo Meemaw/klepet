@@ -40,6 +40,7 @@ function imgElementHtml(sporocilo) {
   elem.setAttribute("src", sporocilo);
   elem.setAttribute("height", "200");
   elem.setAttribute("width", "200");
+  elem.style.marginLeft = 20+"px";
   return $('<div></div>').html(elem);
 }
 
