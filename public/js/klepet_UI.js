@@ -61,12 +61,8 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
     $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
-<<<<<<< HEAD
     handlePictureLinks(sporocilo);
-      
-=======
     checkYoutubeLinks(sporocilo);
->>>>>>> youtube
   }
 
   $('#poslji-sporocilo').val('');
