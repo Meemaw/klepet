@@ -29,6 +29,7 @@ function handlePictureLinks(sporocilo) {
       if(split[i].startsWith("http")  && (split[i].endsWith(".jpg") || split[i].endsWith(".png") || split[i].endsWith("gif"))) {
         $('#sporocila').append(imgElementHtml(split[i]));
         $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+        
       }
   }
 }
