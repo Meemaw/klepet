@@ -50,6 +50,7 @@ function filtirirajVulgarneBesede(vhod) {
     });
   }
   return vhod;
+  
 }
 
 $(document).ready(function() {
