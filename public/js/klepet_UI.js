@@ -12,6 +12,39 @@ function divElementHtmlTekst(sporocilo) {
   return $('<div></div>').html('<i>' + sporocilo + '</i>');
 }
 
+
+function isPictureLinkCheck(sporocilo) {
+  var linkRegex = '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*).(jpg|gif|png)';
+  var regExp = new RegExp(linkRegex, "gi");
+
+  console.log(sporocilo.match(regExp));
+  return 1;
+}
+
+function handlePictureLinks(sporocilo) {
+  var split = sporocilo.match(/\S+/g);
+  console.log(split);
+  var count = 0;
+  for(var i = 0; i < split.length; i++) {
+      if(split[i].startsWith("http")  && (split[i].endsWith(".jpg") || split[i].endsWith(".png") || split[i].endsWith("gif"))) {
+        $('#sporocila').append(imgElementHtml(split[i]));
+        $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+        
+      }
+  }
+}
+
+
+
+function imgElementHtml(sporocilo) {
+  var elem = document.createElement("img");
+  elem.setAttribute("src", sporocilo);
+  elem.setAttribute("height", "200");
+  elem.setAttribute("width", "200");
+  elem.style.marginLeft = 20+"px";
+  return $('<div></div>').html(elem);
+}
+
 function procesirajVnosUporabnika(klepetApp, socket) {
   var sporocilo = $('#poslji-sporocilo').val();
   sporocilo = dodajSmeske(sporocilo);
@@ -22,11 +55,14 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     if (sistemskoSporocilo) {
       $('#sporocila').append(divElementHtmlTekst(sistemskoSporocilo));
     }
-  } else {
+  }
+  else {
     sporocilo = filtirirajVulgarneBesede(sporocilo);
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
     $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+    handlePictureLinks(sporocilo);
+      
   }
 
   $('#poslji-sporocilo').val('');
@@ -77,6 +113,9 @@ $(document).ready(function() {
   socket.on('sporocilo', function (sporocilo) {
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
+    var index = sporocilo.besedilo.indexOf(':',0);
+    var sub = sporocilo.besedilo.substr(index, sporocilo.besedilo.length);
+    handlePictureLinks(sub);
   });
   
   socket.on('kanali', function(kanali) {
