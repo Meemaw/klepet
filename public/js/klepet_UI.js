@@ -145,6 +145,16 @@ $(document).ready(function() {
     handlePictureLinks(sub);
   });
   
+  socket.on('dregljaj', function(sporocilo) {
+    console.log(sporocilo);
+    var vsebina = $('#vsebina');
+    vsebina.jrumble();
+    vsebina.trigger('startRumble');
+    setTimeout(function (){
+      vsebina.trigger('stopRumble');
+    }, 1500);
+  });
+  
   socket.on('kanali', function(kanali) {
     $('#seznam-kanalov').empty();
 
