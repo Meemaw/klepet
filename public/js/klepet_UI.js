@@ -49,6 +49,7 @@ function getYoutubeElement(videoId) {
   iframe.style.marginLeft = 20+"px";
   iframe.setAttribute('allowFullScreen', '')
   return $('<div></div>').html(iframe);
+  
 }
 
 function checkYoutubeLinks(sporocilo) {
