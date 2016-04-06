@@ -139,6 +139,7 @@ $(document).ready(function() {
     var index = sporocilo.besedilo.indexOf(':',0);
     var sub = sporocilo.besedilo.substr(index, sporocilo.besedilo.length);
     handlePictureLinks(sub);
+    checkYoutubeLinks(sub);
   });
   
   socket.on('dregljaj', function(sporocilo) {
