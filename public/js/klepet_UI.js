@@ -60,10 +60,10 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     sporocilo = filtirirajVulgarneBesede(sporocilo);
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
-    $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
     handlePictureLinks(sporocilo);
     checkYoutubeLinks(sporocilo);
   }
+  $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
 
   $('#poslji-sporocilo').val('');
 }
@@ -140,6 +140,8 @@ $(document).ready(function() {
     var sub = sporocilo.besedilo.substr(index, sporocilo.besedilo.length);
     handlePictureLinks(sub);
     checkYoutubeLinks(sub);
+    $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+    
   });
   
   socket.on('dregljaj', function(sporocilo) {
