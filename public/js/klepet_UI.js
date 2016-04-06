@@ -100,6 +100,9 @@ $(document).ready(function() {
   socket.on('sporocilo', function (sporocilo) {
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
+     var index = sporocilo.besedilo.indexOf(':',0);
+    var sub = sporocilo.besedilo.substr(index, sporocilo.besedilo.length);
+    checkYoutubeLinks(sub);
   });
   
   socket.on('kanali', function(kanali) {
