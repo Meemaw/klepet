@@ -60,10 +60,10 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     sporocilo = filtirirajVulgarneBesede(sporocilo);
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
-    handlePictureLinks(sporocilo);
-    checkYoutubeLinks(sporocilo);
   }
+
   $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
+  handlePictureLinks(sporocilo);
 
   $('#poslji-sporocilo').val('');
 }
