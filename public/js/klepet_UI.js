@@ -64,7 +64,7 @@ function procesirajVnosUporabnika(klepetApp, socket) {
 
   $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
   handlePictureLinks(sporocilo);
-
+  checkYoutubeLinks(sporocilo);
   $('#poslji-sporocilo').val('');
 }
 
